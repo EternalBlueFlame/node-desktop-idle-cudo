@@ -15,10 +15,10 @@
   ],
   "homepage": "https://github.com/bithavoc/node-desktop-idle",
   "licenses": [
-   {
-     "type": "MIT",
-     "url": "https://github.com/bithavoc/node-desktop-idle/blob/master/LICENSE"
-   }
+    {
+      "type": "MIT",
+      "url": "https://github.com/bithavoc/node-desktop-idle/blob/master/LICENSE"
+    }
   ],
   "repository": {
     "type": "git",
@@ -38,9 +38,9 @@
     "node": ">=7.9.0"
   },
   "devDependencies": {
-    "eslint": "^4.6.1",
-    "npm-watch": "^0.2.0",
-    "vows": "^0.8.1"
+    "eslint": "^5.8.0",
+    "npm-watch": "^0.4.0",
+    "vows": "^0.8.2"
   },
   "watch": {
     "test_watch": {
