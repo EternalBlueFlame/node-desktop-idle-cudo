@@ -5,23 +5,22 @@ let mainWindow = null;
 var cursorPosition =null;
 var idleSeconds=0;
 
+//tracks system power manager use. gets significant improvements with electron 10, otherwise is spotty on linux and win 10+. When it doesn't work there's just no action from it.
 const {powerMonitor} = require('electron'); 
-//NOTE: only covers mouse, keyboard detection would have to be handled through external means, electron disabled keybind interaction unless it is fully consumed.
 
 //class instancing through plugin loading is highly recommended, the main app asar will not load in a reasonable timeframe outside of something like nano, this wastes a lot of dev time.
 // documentation on plugin loading https://beyondco.de/blog/plugin-system-for-electron-apps-part-1
 
-//this should be called automatically on import to the main app. if not this class can easily be imported to the main class.
+//this should be called automatically on import to the main app. if not this class can easily be copies to a main class.
 app.whenReady().then(() => {
 	updateCursor();
 
 	//TODO: disposable test method to prove result. remove this for real deployment.
 	testCursor();
-
 });
 
 
-//uses an async thread to track cursor position every second.
+//uses an async thread to track cursor position and system idle every second.
 const updateCursor = async () => {
 	//checking cursor X and Y independently is not efficient, but the class instancing of cursorPosition has obscure data that prevents direct comparison.
 	if(cursorPosition!=null
@@ -41,7 +40,7 @@ const updateCursor = async () => {
 	}
 
 	//pause the thread for one second
-	//TODO: this should be extended for the entire expected inactivity time for efficiency reasons
+	//TODO: this should be extended for the entire expected inactivity time or at least a larger portion of it for efficiency reasons
 	await new Promise(resolve => setTimeout(resolve, 1000));
 	updateCursor();
 
