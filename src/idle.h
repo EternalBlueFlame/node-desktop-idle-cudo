@@ -1,1 +1,0 @@
-double desktop_idle_get_time();
